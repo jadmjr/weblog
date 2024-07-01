@@ -3,7 +3,7 @@
 Projeto inicial Weblog
 
 - **Conectando Mundos++**
-<img alt="diagrama er do weblog" src="https://hred.com.br/wp-content/uploads/2024/06/logWebDelivery.png" align="center"/>
+<img alt="diagrama er do weblog" src="https://hred.com.br/wp-content/uploads/2024/07/logWebDelivery.png" align="center"/>
 
 ## 🚀 Começando
 
