@@ -1,6 +1,6 @@
 package com.hred.weblog.DTO;
 
-import com.hred.weblog.model.RecipientAddress;
+import com.hred.weblog.model.ResponsibleAddress;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +11,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipientDTO {
+public class ResponsibleDTO {
 
 	private String name;
 	private String email;
 	private String phone;
 	private String documentNumber;
-	private RecipientAddress recipientAdress;
+	//colocar entidades simples
+	private ResponsibleAddress responsibleAdress;
 
 }

@@ -18,6 +18,8 @@ Projeto inicial Weblog
 Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
 
 * **Julimar Junior** - *Desenvolvedor* - [julimar](https://github.com/jadmjr)
+* **Thales Bequiman** - *Desenvolvedor* - [thales](https://github.com/oizus)
+
 
 ## 🎁 Expressões de gratidão
 

@@ -16,13 +16,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_recipient")
-public class Recipient extends Person {
-	@OneToMany(mappedBy="recipient")
+@Table(name = "tb_responsible")
+public class Responsible extends Person {
+	@OneToMany(mappedBy="responsible")
 	@JsonIgnore
-	private List<Delivery> recipientDeliverys;
+	private List<Delivery> responsibleDeliverys;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
-	private RecipientAddress recipientAdress;
+	private ResponsibleAddress responsibleAdress;
 }

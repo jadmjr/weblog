@@ -49,32 +49,7 @@ public class SenderService {
 		sender.setEmail(senderDto.getEmail());
 		sender.setPhone(senderDto.getPhone());
 		sender.setDocumentNumber(senderDto.getDocumentNumber());
-
-		sender.setSenderAdress(senderAdress);
-		//senderAdress.setSender(sender);
-
-		//Sender ns = new Sender();
-		//ns.set(sender);
-
-		// senderAdress.setSender(sender);
-
-		// sender.setSenderAdress(senderAdress);
-		// sender.getSenderAdress().setSender(sender);
-
-		/*
-		 * SenderAddress senderAdress = sender.getSenderAdress();
-		 * 
-		 * senderAdress.setStreetName(senderDto.getSenderAdress().getStreetName());
-		 * senderAdress.setNumber(senderDto.getSenderAdress().getNumber());
-		 * senderAdress.setComplement(senderDto.getSenderAdress().getComplement());
-		 * senderAdress.setCity(senderDto.getSenderAdress().getCity());
-		 * senderAdress.setEstate(senderDto.getSenderAdress().getEstate());
-		 * senderAdress.setZipCode(senderDto.getSenderAdress().getZipCode());
-		 * senderAdress.setCountry(senderDto.getSenderAdress().getCountry());
-		 */
-		// sender.setSenderAdress(new SenderAddress());
-		// sender.getSenderAdress().setCity("berlandia");
-		// sender.getSenderAdress().setSender(sender);
+		sender.setSenderAdress(senderAdress);		
 
 		return repository.save(sender);
 

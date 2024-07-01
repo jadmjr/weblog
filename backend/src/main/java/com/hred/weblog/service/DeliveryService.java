@@ -14,9 +14,13 @@ import com.hred.weblog.enums.DeliveryStatus;
 import com.hred.weblog.enums.DeliveryTypes;
 import com.hred.weblog.model.Delivery;
 import com.hred.weblog.model.Pack;
+import com.hred.weblog.model.Recipient;
+import com.hred.weblog.model.Responsible;
 import com.hred.weblog.model.Sender;
 import com.hred.weblog.repository.DeliveryRepository;
 import com.hred.weblog.repository.PackRepository;
+import com.hred.weblog.repository.RecipientRepository;
+import com.hred.weblog.repository.ResponsibleRepository;
 import com.hred.weblog.repository.SenderRepository;
 
 @Service
@@ -24,10 +28,12 @@ public class DeliveryService {
 
 	@Autowired
 	private DeliveryRepository repository;
-
+	@Autowired
+	private ResponsibleRepository responsible_repository;
 	@Autowired
 	private SenderRepository sender_repository;
-
+	@Autowired
+	private RecipientRepository recipient_repository;
 	@Autowired
 	private PackRepository pack_repository;
 
@@ -48,6 +54,11 @@ public class DeliveryService {
 	public Delivery save(DeliveryDTO deliveryDto) {
 		Delivery delivery = new Delivery();
 
+		Pack pack = pack_repository.findById(deliveryDto.getPackId()).get();
+		Responsible responsible = responsible_repository.findById(deliveryDto.getResponsibleId()).get();
+		Sender sender = sender_repository.findById(deliveryDto.getSenderId()).get();
+		Recipient recipient = recipient_repository.findById(deliveryDto.getRecipientId()).get();
+
 		Instant instant = Instant.now();
 		Date current_date = Date.from(instant);
 
@@ -63,11 +74,17 @@ public class DeliveryService {
 
 		delivery.setDeliveryStatusId(DeliveryStatus.POSTED);
 
-		Pack pack = pack_repository.findById(deliveryDto.getPackId()).get();
-		Sender sender = sender_repository.findById(deliveryDto.getSenderId()).get();
+		float cubicMeter = pack.getCubicMeter();
+
+		if (delivery.getDeliveryTypeId() == DeliveryTypes.SHIP)
+			delivery.setDeliveredFee((double) (cubicMeter * 22));
+		else if (delivery.getDeliveryTypeId() == DeliveryTypes.TRUCK)
+			delivery.setDeliveredFee((double) (cubicMeter * 35));
 
 		delivery.setPack(pack);
+		delivery.setResponsible(responsible);
 		delivery.setSender(sender);
+		delivery.setRecipient(recipient);
 
 		return repository.save(delivery);
 	}

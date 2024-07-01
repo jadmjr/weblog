@@ -11,10 +11,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_recipient_address")
-public class RecipientAddress extends Address {
-	@OneToOne(mappedBy = "recipientAdress")
+@Table(name = "tb_responsible_address")
+public class ResponsibleAddress extends Address {
+	@OneToOne(mappedBy = "responsibleAdress")
 	@JsonIgnore
-	private Recipient recipient;
+	private Responsible responsible;
 
 }

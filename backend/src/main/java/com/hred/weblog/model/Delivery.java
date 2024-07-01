@@ -42,6 +42,14 @@ public class Delivery {
     @ManyToOne
     @JoinColumn(name="sender_id", referencedColumnName = "id")
     private Sender sender;
+    
+    @ManyToOne
+    @JoinColumn(name="recipient_id", referencedColumnName = "id")
+    private Recipient recipient;
+    
+    @ManyToOne
+    @JoinColumn(name="responsible_id", referencedColumnName = "id")
+    private Responsible responsible;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pack_id", referencedColumnName = "id")

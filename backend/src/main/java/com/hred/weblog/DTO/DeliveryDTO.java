@@ -18,7 +18,9 @@ public class DeliveryDTO {
 	private Date deliveredDate;
 	private int deliveryTypeId;
 	private int deliveryStatusId;
+	private Long responsibleId;
 	private Long senderId;
+	private Long recipientId;
 	private Long packId;
 
 }
