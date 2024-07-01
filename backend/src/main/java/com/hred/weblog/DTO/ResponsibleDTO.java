@@ -17,7 +17,6 @@ public class ResponsibleDTO {
 	private String email;
 	private String phone;
 	private String documentNumber;
-	//colocar entidades simples
 	private ResponsibleAddress responsibleAdress;
 
 }
