@@ -46,85 +46,87 @@ response = requests.request("POST", url+"responsible", headers=headers, data=pay
 response_dict = response.json() 
 responsibleId = int(response_dict["id"])
 
-print(response.text)
-print(response.status_code)
+for x in range(1000):
 
-#Criando um Remetente. 
-payload = json.dumps({
-"name": fake.name(),
-"email": fake.email(),
-"phone": fake.msisdn(),
-"documentNumber": fake.cpf(),
-"senderAdress": {
-    "streetName": fake.street_name(),
-    "number": random.randint(1, 9999),
-    "complement": "Casa "+fake.safe_color_name(),
-    "city": fake.city(),
-    "estate": fake.state(),
-    "zipCode": fake.postcode(),
-    "country": "Brasil"
-}
-})
+  print(response.text)
+  print(response.status_code)
 
-response = requests.request("POST", url+"sender", headers=headers, data=payload)
-response_dict = response.json() 
-senderId = int(response_dict["id"])
+  #Criando um Remetente. 
+  payload = json.dumps({
+  "name": fake.name(),
+  "email": fake.email(),
+  "phone": fake.msisdn(),
+  "documentNumber": fake.cpf(),
+  "senderAdress": {
+      "streetName": fake.street_name(),
+      "number": random.randint(1, 9999),
+      "complement": "Casa "+fake.safe_color_name(),
+      "city": fake.city(),
+      "estate": fake.state(),
+      "zipCode": fake.postcode(),
+      "country": "Brasil"
+  }
+  })
 
-print(response.text)
-print(response.status_code)
+  response = requests.request("POST", url+"sender", headers=headers, data=payload)
+  response_dict = response.json() 
+  senderId = int(response_dict["id"])
 
-#Criando um destinatario
-payload = json.dumps({
-"name": fake.name(),
-"email": fake.email(),
-"phone": fake.msisdn(),
-"documentNumber": fake.cpf(),
-"recipientAdress": {
-    "streetName": fake.street_name(),
-    "number": random.randint(1, 9999),
-    "complement": "Casa "+fake.safe_color_name(),
-    "city": fake.city(),
-    "estate": fake.state(),
-    "zipCode": fake.postcode(),
-    "country": "Brasil"
-}
-})
+  print(response.text)
+  print(response.status_code)
 
-response = requests.request("POST", url+"recipient", headers=headers, data=payload)
-response_dict = response.json() 
-recipientId = int(response_dict["id"])
+  #Criando um destinatario
+  payload = json.dumps({
+  "name": fake.name(),
+  "email": fake.email(),
+  "phone": fake.msisdn(),
+  "documentNumber": fake.cpf(),
+  "recipientAdress": {
+      "streetName": fake.street_name(),
+      "number": random.randint(1, 9999),
+      "complement": "Casa "+fake.safe_color_name(),
+      "city": fake.city(),
+      "estate": fake.state(),
+      "zipCode": fake.postcode(),
+      "country": "Brasil"
+  }
+  })
 
-print(response.text)
-print(response.status_code)
+  response = requests.request("POST", url+"recipient", headers=headers, data=payload)
+  response_dict = response.json() 
+  recipientId = int(response_dict["id"])
 
-#Criando um pacote
-payload = json.dumps({
-"height": 100,
-"width": 50,
-"length": 20
-})
+  print(response.text)
+  print(response.status_code)
 
-response = requests.request("POST", url+"pack", headers=headers, data=payload)
-response_dict = response.json() 
-packId = int(response_dict["id"])
+  #Criando um pacote
+  payload = json.dumps({
+  "height": 100,
+  "width": 50,
+  "length": 20
+  })
 
-print(response.text)
-print(response.status_code)
+  response = requests.request("POST", url+"pack", headers=headers, data=payload)
+  response_dict = response.json() 
+  packId = int(response_dict["id"])
 
-#Criando uma entrega de navio 
-payload = json.dumps({
-  "id": 1,
-  "exitDate": None,
-  "deliveryDate": None,
-  "deliveryTypeId": 1,
-  "deliveryStatusId": None,
-  "responsibleId": responsibleId,
-  "senderId": senderId,
-  "recipientId": recipientId,
-  "packId": packId
-})
+  print(response.text)
+  print(response.status_code)
 
-response = requests.request("POST", url+"delivery", headers=headers, data=payload)
+  #Criando uma entrega de navio 
+  payload = json.dumps({
+    "id": 1,
+    "exitDate": None,
+    "deliveryDate": None,
+    "deliveryTypeId": 1,
+    "deliveryStatusId": None,
+    "responsibleId": responsibleId,
+    "senderId": senderId,
+    "recipientId": recipientId,
+    "packId": packId
+  })
 
-print(response.text)
-print(response.status_code)
+  response = requests.request("POST", url+"delivery", headers=headers, data=payload)
+
+  print(response.text)
+  print(response.status_code)
