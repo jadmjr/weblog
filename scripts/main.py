@@ -1,5 +1,14 @@
 import requests
 import json
+import requests
+import json
+from faker import Faker
+from faker.providers import internet
+import random
+
+
+# Modulo Faker
+fake = Faker('pt_BR')
 
 url = "http://localhost:8080/"
 
@@ -20,18 +29,41 @@ headers = {
 }
 
 while(True):
+    #Criando um Responsável
+
+    payload = json.dumps({
+    "name": fake.name(),
+    "email": fake.email(),
+    "phone": fake.msisdn(),
+    "documentNumber": fake.cpf(),
+    "responsibleAdress": {
+        "streetName": fake.street_name(),
+        "number": random.randint(1, 9999),
+        "complement": "Casa "+fake.safe_color_name(),
+        "city": fake.city(),
+        "estate": fake.state(),
+        "zipCode": fake.postcode(),
+        "country": "Brasil"
+    }
+    })
+
+    response = requests.request("POST", url+"responsible", headers=headers, data=payload)
+    response_dict = response.json() 
+    responsibleId = int(response_dict["id"])
+    responsibleName = response_dict["name"]
+
     print("olá seja bem vindo ao Weblog.")
     print("você agora é responsavél por receber as encomendas.")
-    print("te chamaremos de Claus e seu ID é 01!")
+    print("te chamaremos de: "+responsibleName+" e seu ID é: "+str(responsibleId)+".")
 
-    print("Claus comece com os dados do Remetente: ")
+    print(responsibleName+" comece com os dados do Remetente: ")
 
     senderName = input('Digite o nome do remetente:')
     senderEmail = input('Digite o email do remetente:')
     senderPhone = input('Digite o telefone do remetente:')
     senderDocument = input('Digite o CPF do remetente:')
 
-    print("Claus insira agoras os dados de endereço do Remetente: ")
+    print(responsibleName+" insira agoras os dados de endereço do Remetente: ")
 
     senderStreetName = input('Digite o nome da rua do remetente:')
     senderNumber = input('Digite o número da casa do remetente:')
@@ -41,14 +73,14 @@ while(True):
     senderZipCode = input('Digite o CEP do remetente:')
     senderCountry = input('Digite o Pais do remetente:')
 
-    print("Claus agora informe os dados do Destinatário: ")
+    print(responsibleName+" agora informe os dados do Destinatário: ")
 
     recipientName = input('Digite o nome do destinatário:')
     recipientEmail = input('Digite o email do destinatário:')
     recipientPhone = input('Digite o telefone do destinatário:')
     recipientDocument = input('Digite o CPF do destinatário:')
 
-    print("Claus insira agoras os dados de endereço do Destinatário: ")
+    print(responsibleName+" insira agoras os dados de endereço do Destinatário: ")
 
     recipientStreetName = input('Digite o nome da rua do destinatário:')
     recipientNumber = input('Digite o número da casa do destinatário:')
@@ -78,9 +110,9 @@ while(True):
 
     response = requests.request("POST", url+"sender", headers=headers, data=payload)
     response_dict = response.json() 
-    responsibleId = int(response_dict["id"])
+    senderId = int(response_dict["id"])
 
-        #Criando um Destinatário
+    #Criando um Destinatário
 
     payload = json.dumps({
     "name": recipientName,
@@ -98,6 +130,39 @@ while(True):
     }
     })
 
-    response = requests.request("POST", url+"sender", headers=headers, data=payload)
+    response = requests.request("POST", url+"recipient", headers=headers, data=payload)
     response_dict = response.json() 
-    responsibleId = int(response_dict["id"])
+    recipientId = int(response_dict["id"])
+
+    #Criando um pacote
+
+    payload = json.dumps({
+    "height": 100,
+    "width": 100,
+    "length": 20
+    })
+
+    response = requests.request("POST", url+"pack", headers=headers, data=payload)
+    response_dict = response.json() 
+    packId = int(response_dict["id"])
+
+    print(response.text)
+    print(response.status_code)
+
+    #Criando uma entrega de navio 
+    payload = json.dumps({
+        "id": 1,
+        "exitDate": None,
+        "deliveryDate": None,
+        "deliveryTypeId": 1,
+        "deliveryStatusId": None,
+        "responsibleId": responsibleId,
+        "senderId": senderId,
+        "recipientId": recipientId,
+        "packId": packId
+    })
+
+    response = requests.request("POST", url+"delivery", headers=headers, data=payload)
+
+    print(response.text)
+    print(response.status_code)
