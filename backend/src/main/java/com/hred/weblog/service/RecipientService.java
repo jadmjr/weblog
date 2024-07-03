@@ -38,8 +38,9 @@ public class RecipientService {
 		recipientAdress.setStreetName(recipientDto.getRecipientAdress().getStreetName());
 		recipientAdress.setNumber(recipientDto.getRecipientAdress().getNumber());
 		recipientAdress.setComplement(recipientDto.getRecipientAdress().getComplement());
+		recipientAdress.setNeighborhood(recipientDto.getRecipientAdress().getNeighborhood());
 		recipientAdress.setCity(recipientDto.getRecipientAdress().getCity());
-		recipientAdress.setEstate(recipientDto.getRecipientAdress().getEstate());
+		recipientAdress.setState(recipientDto.getRecipientAdress().getState());
 		recipientAdress.setZipCode(recipientDto.getRecipientAdress().getZipCode());
 		recipientAdress.setCountry(recipientDto.getRecipientAdress().getCountry());
 

@@ -52,8 +52,9 @@ match opcao:
             "streetName": fake.street_name(),
             "number": random.randint(1, 9999),
             "complement": "Casa "+fake.safe_color_name(),
+            "neighborhood": fake.neighborhood(),
             "city": fake.city(),
-            "estate": fake.state(),
+            "state": fake.state(),
             "zipCode": fake.postcode(),
             "country": "Brasil"
         }
@@ -87,14 +88,15 @@ match opcao:
         
         senderZipCode = response_dict["cep"]
         senderStreetName = response_dict["logradouro"]
+        senderNeighborhood = response_dict["bairro"]
         senderCity = response_dict["localidade"]
-        senderEstate = response_dict["uf"]      
+        senderState = response_dict["uf"]      
         senderCountry = "BRASIL" 
         senderNumber = input('Digite o número da casa do remetente:')
         senderComplement = input('Digite um complemento do endereço:')
 
         print("Confirme o endereço")
-        print(senderStreetName+", "+str(senderNumber)+", "+senderComplement+", "+senderCity+", "+senderEstate+", "+senderCountry)               
+        print(senderStreetName+", "+str(senderNumber)+", "+senderComplement+", "+", "+senderNeighborhood+", "+senderCity+", "+senderState+", "+senderCountry)               
         
 
         print(responsibleName+" insira os dados do Destinatário: ")
@@ -121,13 +123,14 @@ match opcao:
         recipientZipCode = response_dict["cep"]
         recipientStreetName = response_dict["logradouro"]
         recipientCity = response_dict["localidade"]
-        recipientEstate = response_dict["uf"]      
+        recipientNeighborhood = response_dict["bairro"]
+        recipientState = response_dict["uf"]      
         recipientCountry = "BRASIL" 
         recipientNumber = input('Digite o número da casa do remetente:')
         recipientComplement = input('Digite um complemento do endereço:')
 
         print("Confirme o endereço")
-        print(recipientStreetName+", "+str(recipientNumber)+", "+recipientComplement+", "+recipientCity+", "+recipientEstate+", "+recipientCountry)               
+        print(recipientStreetName+", "+str(recipientNumber)+", "+recipientComplement+", "+", "+recipientNeighborhood+", "+recipientCity+", "+recipientState+", "+recipientCountry)             
 
         print(responsibleName+" insira os dados do pacote: ")
 
@@ -136,8 +139,9 @@ match opcao:
         length = float(input('Insira a comprimento do pacote em centimetros'))
 
         print(responsibleName+"Escolha a forma de entrega do pacote: ")
-        print("1 - Transporte terreste -  R$35,00 por metro cúbico")
-        print("2 - Transporte marritmo -  R$22,00 por metro cúbico")
+        print("1 - Transporte marítimo -  R$22,00 por metro cúbico")
+        print("2 - Transporte terreste -  R$35,00 por metro cúbico")
+        
         tranpostMethod = int(input())
 
         #Criando um Remetente
@@ -150,9 +154,10 @@ match opcao:
         "senderAdress": {
             "streetName": senderStreetName,
             "number": senderNumber,
+            "neighborhood": senderNeighborhood,
             "complement": senderComplement,
             "city": senderCity,
-            "estate": senderEstate,
+            "state": senderState,
             "zipCode": senderZipCode,
             "country": senderCountry
         }
@@ -172,9 +177,10 @@ match opcao:
         "recipientAdress": {
             "streetName": recipientStreetName,
             "number": recipientNumber,
+            "neighborhood": recipientNeighborhood,
             "complement": recipientComplement,
             "city": recipientCity,
-            "estate": recipientEstate,
+            "state": recipientState,
             "zipCode": recipientZipCode,
             "country": recipientCountry
         }
@@ -211,5 +217,15 @@ match opcao:
         })
 
         response = requests.request("POST", url+"delivery", headers=headers, data=payload)
+
+        print(response.text)
+
+        response_dict = response.json() 
+        deliveryId = int(response_dict["id"])
+        deliveryPostDate
+        deliveryFee 
+        deliveryType
+        deliveryStatusId
+        
 
 

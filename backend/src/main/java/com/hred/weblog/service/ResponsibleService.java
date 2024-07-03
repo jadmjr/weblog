@@ -38,8 +38,9 @@ public class ResponsibleService {
 		responsibleAdress.setStreetName(responsibleDto.getResponsibleAdress().getStreetName());
 		responsibleAdress.setNumber(responsibleDto.getResponsibleAdress().getNumber());
 		responsibleAdress.setComplement(responsibleDto.getResponsibleAdress().getComplement());
+		responsibleAdress.setNeighborhood(responsibleDto.getResponsibleAdress().getNeighborhood());
 		responsibleAdress.setCity(responsibleDto.getResponsibleAdress().getCity());
-		responsibleAdress.setEstate(responsibleDto.getResponsibleAdress().getEstate());
+		responsibleAdress.setState(responsibleDto.getResponsibleAdress().getState());
 		responsibleAdress.setZipCode(responsibleDto.getResponsibleAdress().getZipCode());
 		responsibleAdress.setCountry(responsibleDto.getResponsibleAdress().getCountry());
 

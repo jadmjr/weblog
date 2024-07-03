@@ -24,8 +24,9 @@ public abstract class Address {
 	private String streetName;
 	private String number;
 	private String complement;
+	private String neighborhood;
 	private String city;
-	private String estate;
+	private String state;
 	private String zipCode;
 	private String country;
 

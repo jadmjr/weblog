@@ -34,12 +34,13 @@ public class SenderService {
 	public Sender save(SenderDTO senderDto) {
 
 		SenderAddress senderAdress = new SenderAddress();
-		
+
 		senderAdress.setStreetName(senderDto.getSenderAdress().getStreetName());
 		senderAdress.setNumber(senderDto.getSenderAdress().getNumber());
 		senderAdress.setComplement(senderDto.getSenderAdress().getComplement());
+		senderAdress.setNeighborhood(senderDto.getSenderAdress().getNeighborhood());
 		senderAdress.setCity(senderDto.getSenderAdress().getCity());
-		senderAdress.setEstate(senderDto.getSenderAdress().getEstate());
+		senderAdress.setState(senderDto.getSenderAdress().getState());
 		senderAdress.setZipCode(senderDto.getSenderAdress().getZipCode());
 		senderAdress.setCountry(senderDto.getSenderAdress().getCountry());
 
@@ -49,7 +50,7 @@ public class SenderService {
 		sender.setEmail(senderDto.getEmail());
 		sender.setPhone(senderDto.getPhone());
 		sender.setDocumentNumber(senderDto.getDocumentNumber());
-		sender.setSenderAdress(senderAdress);		
+		sender.setSenderAdress(senderAdress);
 
 		return repository.save(sender);
 
