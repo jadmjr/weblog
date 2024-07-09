@@ -19,3 +19,11 @@ gerar um componente no Angular:
 
 	ng generate component <component-name>
 	
+	
+componetes de Weblog:
+
+	ng generate component navbar
+	
+
+
+***adicionar o angular material foi um desafio 
