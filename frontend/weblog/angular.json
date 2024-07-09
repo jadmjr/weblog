@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "weblog-app": {
+    "weblog": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/weblog-app",
+            "outputPath": "dist/weblog",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -25,7 +25,7 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -58,10 +58,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "weblog-app:build:production"
+              "buildTarget": "weblog:build:production"
             },
             "development": {
-              "buildTarget": "weblog-app:build:development"
+              "buildTarget": "weblog:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -69,7 +69,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "weblog-app:build"
+            "buildTarget": "weblog:build"
           }
         },
         "test": {
@@ -85,7 +85,7 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -93,5 +93,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f1529ae5-8de9-47c5-9bff-9e206f92a0ca"
   }
 }

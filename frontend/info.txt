@@ -27,3 +27,5 @@ componetes de Weblog:
 
 
 ***adicionar o angular material foi um desafio 
+
+ng add @angular/material
